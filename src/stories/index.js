@@ -22,7 +22,7 @@ import { Asset } from '../components/Asset';
 import { PortfolioPage } from '../components/PortfolioPage';
 import { SmallInfoPanel } from '../components/SmallInfoPanel';
 import { TransactionsPage } from '../components/TransactionsPage';
-import { TransactionHistory } from '../components/TransactionHistory';
+import { default as TransactionHistory } from '../components/TransactionHistory';
 import { Row } from '../components/Row';
 import { AssetDetailsPage } from '../components/AssetDetailsPage';
 import { AssetHero } from '../components/AssetHero';
@@ -116,7 +116,23 @@ storiesOf('Explore Assets Page', module)
 
 storiesOf('Portfolio Page', module).add('view', () => <PortfolioPage />);
 
-storiesOf('Transactions Page', module).add('view', () => <TransactionsPage />);
+class TransactionHistoryWeb3Wrapper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { web3: undefined };
+  }
+  async componentDidMount() {
+    this.setState({ web3: await getWeb3Async() });
+  }
+  render() {
+    const { web3 } = this.state;
+    return <div>{web3 && <TransactionHistory web3={web3} />}</div>;
+  }
+}
+
+storiesOf('Transactions History', module).add('view', () => (
+  <TransactionHistoryWeb3Wrapper />
+));
 
 storiesOf('Asset Details Page', module).add('view', () => <AssetDetailsPage />);
 
