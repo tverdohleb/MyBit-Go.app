@@ -1,13 +1,13 @@
 import { promisifyAll } from 'bluebird';
-import * as FundingHub from './FundingHub.js';
+import * as HashFunctions from './HashFunctions.js';
 
 const instancePromisifier = instance =>
   promisifyAll(instance, { suffix: 'Async' });
 
 export default class HashFunctionsUtil {
   async load(web3) {
-    const abi = await web3.eth.contract(FundingHub.ABI);
-    this.instance = instancePromisifier(abi.at(FundingHub.ADDRESS));
+    const abi = await web3.eth.contract(HashFunctions.ABI);
+    this.instance = instancePromisifier(abi.at(HashFunctions.ADDRESS));
     this.web3 = web3;
   }
 

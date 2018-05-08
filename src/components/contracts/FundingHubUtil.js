@@ -39,18 +39,18 @@ export default class FundingHubUtil {
   }
 
   async fund(_assetID, _value) {
-    let ethValue = this.web3.toWei(_value);
     let iT = this.instance;
     let w3 = this.web3;
+
     this.instance.fund.estimateGas(
       _assetID,
-      { from: this.web3.eth.coinbase, value: ethValue },
+      { from: this.web3.eth.coinbase, value: this.web3.toWei(_value, 'ether') },
       async function(error, result) {
         if (!error) {
           await iT.fundAsync(_assetID, {
             from: w3.eth.coinbase,
-            value: ethValue,
-            gas: parseInt(result, 10)
+            value: w3.toWei(_value, 'ether'),
+            gas: parseInt(result)
           });
         }
       }
