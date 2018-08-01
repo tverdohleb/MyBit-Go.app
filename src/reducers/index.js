@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
+import { routerReducer } from 'connected-next-router';
+
 
 import assets from './assets';
 import errors from './errors';

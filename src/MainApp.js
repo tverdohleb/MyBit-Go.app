@@ -22,7 +22,7 @@ import MetamaskChecker from './components/MetamaskChecker';
 import * as actions from './actions';
 import { MYBIT_TICKER_COINMARKETCAP, ETHEREUM_TICKER_COINMARKETCAP } from './constants';
 
-class App extends Component {
+class MainApp extends Component {
   async UNSAFE_componentWillMount() {
     this.props.fetchPriceFromCoinmarketcap(MYBIT_TICKER_COINMARKETCAP);
     this.props.fetchPriceFromCoinmarketcap(ETHEREUM_TICKER_COINMARKETCAP);
@@ -101,7 +101,7 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
+MainApp.propTypes = {
   fetchPriceFromCoinmarketcap: PropTypes.func.isRequired,
   fetchTransactionHistory: PropTypes.func.isRequired,
   setTransactionHistoryFilters: PropTypes.func.isRequired,
@@ -112,4 +112,4 @@ App.propTypes = {
 
 const mapStateToProps = state => ({ state });
 
-export default withRouter(connect(mapStateToProps, actions)(App));
+export default withRouter(connect(mapStateToProps, actions)(MainApp));

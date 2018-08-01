@@ -14,6 +14,7 @@ import {
 import { getCategoryFromAssetTypeHash, mergeAllLogsByAssetId } from '../util/helpers';
 
 const web3 = getWeb3Async();
+const fetch = require('isomorphic-fetch');
 
 // Action constants
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
