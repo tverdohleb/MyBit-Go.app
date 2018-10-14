@@ -108,7 +108,6 @@ class BlockchainInfo extends React.Component {
 
   setAssertsStatusState(state) {
     const { assertsNotification } = this.state;
-    console.log("state: ", state);
     if (state) {
       this.setState({
         assertsNotification: {
